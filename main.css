@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  width: 90%;
+  height: 95vh;
+  margin: 10px auto;
+  padding: 10px;
+  background-image: url("./imgs/game.jpg");
+  background-size: cover;
+}
+.container .info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.container .info div {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.container .info span {
+  color: #795548;
+}
