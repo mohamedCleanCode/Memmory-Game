@@ -64,10 +64,13 @@ body {
 .memory-game .box.active {
   transform: rotateY(180deg);
 }
+.memory-game .box.match {
+  transform: rotateY(180deg);
+}
 .memory-game .box {
   width: 100px;
   height: 100px;
-  transition: transform 1s;
+  transition: transform 0.5s;
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;

@@ -12,7 +12,7 @@ document.querySelector(".start-game").addEventListener("click", (e) => {
 });
 
 // Logic of order boxs
-let time = 5000;
+let time = 1000;
 let memoryGame = document.querySelector(".memory-game");
 let boxs = memoryGame.querySelectorAll(".box");
 let range = [...boxs.keys()];
@@ -42,6 +42,8 @@ function filterActive() {
   if (activeBox.length === 2) {
     // Stop clicking
     stopClicking();
+    // Check match
+    checkMatched(activeBox[0], activeBox[1]);
   }
 }
 
@@ -51,4 +53,23 @@ function stopClicking() {
   setTimeout(() => {
     memoryGame.classList.remove("pointer-events-none");
   }, time);
+}
+
+// Check matched box
+function checkMatched(first, second) {
+  if (first.dataset.tech === second.dataset.tech) {
+    // Remove active class
+    first.classList.remove("active");
+    second.classList.remove("active");
+    // Add match class
+    first.classList.add("match");
+    second.classList.add("match");
+  } else {
+    let tries = document.querySelector(".tries-left span");
+    tries.innerHTML = +tries.innerHTML - 1;
+    setTimeout(() => {
+      first.classList.remove("active");
+      second.classList.remove("active");
+    }, time);
+  }
 }
