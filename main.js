@@ -25,13 +25,13 @@ boxs.forEach((box, i) => {
   box.addEventListener("click", () => {
     // Add active
     addActive(box);
+    filterActive();
   });
 });
 
 // Add active function
 function addActive(selectedBox) {
   selectedBox.classList.add("active");
-  filterActive();
 }
 
 // Filter active function
@@ -40,6 +40,15 @@ function filterActive() {
     box.classList.contains("active")
   );
   if (activeBox.length === 2) {
-    console.log(true);
+    // Stop clicking
+    stopClicking();
   }
+}
+
+// Stop clicking function
+function stopClicking() {
+  memoryGame.classList.add("pointer-events-none");
+  setTimeout(() => {
+    memoryGame.classList.remove("pointer-events-none");
+  }, time);
 }

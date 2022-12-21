@@ -50,6 +50,9 @@ body {
 .container .info span {
   color: #795548;
 }
+.memory-game.pointer-events-none {
+  pointer-events: none;
+}
 .memory-game {
   display: flex;
   flex-wrap: wrap;
