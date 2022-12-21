@@ -4,10 +4,19 @@ document.querySelector(".start-game").addEventListener("click", (e) => {
   if (userName == "" || userName == null) {
     document.querySelector(".name span").innerHTML = "Unkwon";
     e.target.parentElement.remove();
+    setInterval(() => {
+      let time = document.querySelector(".time-left span");
+      time.innerHTML = +time.innerHTML - 1;
+    }, 1000);
   } else {
     userName = userName.substr(0, 1).toUpperCase() + userName.slice(1);
     document.querySelector(".name span").innerHTML = userName;
     e.target.parentElement.remove();
+    setInterval(() => {
+      let time = document.querySelector(".time-left span");
+      end();
+      time.innerHTML = +time.innerHTML - 1;
+    }, 1000);
   }
 });
 
@@ -64,6 +73,7 @@ function checkMatched(first, second) {
     // Add match class
     first.classList.add("match");
     second.classList.add("match");
+    document.getElementById("good").play();
   } else {
     let tries = document.querySelector(".tries-left span");
     tries.innerHTML = +tries.innerHTML - 1;
@@ -71,5 +81,22 @@ function checkMatched(first, second) {
       first.classList.remove("active");
       second.classList.remove("active");
     }, time);
+    document.getElementById("bad").play();
+    end();
+  }
+}
+
+// End function
+function end() {
+  if (
+    +document.querySelector(".tries-left span").innerHTML == 0 ||
+    +document.querySelector(".time-left span").innerHTML == 0
+  ) {
+    Swal.fire({
+      icon: "error",
+      title: "Game Over",
+      footer: '<a href="/">Play again!</a>',
+    });
+    memoryGame.style.pointerEvents = "none";
   }
 }

@@ -66,6 +66,7 @@ body {
 }
 .memory-game .box.match {
   transform: rotateY(180deg);
+  pointer-events: none;
 }
 .memory-game .box {
   width: 100px;
