@@ -1,21 +1,21 @@
+let counterSetTimeInt;
 // Logic of start game
 document.querySelector(".start-game").addEventListener("click", (e) => {
   let userName = prompt("Type your name please!");
   if (userName == "" || userName == null) {
     document.querySelector(".name span").innerHTML = "Unkwon";
     e.target.parentElement.remove();
-    setInterval(() => {
-      let time = document.querySelector(".time-left span");
-      time.innerHTML = +time.innerHTML - 1;
+    counterSetTimeInt = setInterval(() => {
+      document.getElementById("tic-tac").play();
+      end();
     }, 1000);
   } else {
     userName = userName.substr(0, 1).toUpperCase() + userName.slice(1);
     document.querySelector(".name span").innerHTML = userName;
     e.target.parentElement.remove();
-    setInterval(() => {
-      let time = document.querySelector(".time-left span");
+    counterSetTimeInt = setInterval(() => {
+      document.getElementById("tic-tac").play();
       end();
-      time.innerHTML = +time.innerHTML - 1;
     }, 1000);
   }
 });
@@ -88,13 +88,27 @@ function checkMatched(first, second) {
 
 // End function
 function end() {
+  let time = document.querySelector(".time-left span");
+  time.innerHTML = +time.innerHTML - 1;
   if (
     +document.querySelector(".tries-left span").innerHTML == 0 ||
-    +document.querySelector(".time-left span").innerHTML == 0
+    +time.innerHTML == 0
   ) {
+    document.getElementById("failed").play();
+    clearInterval(counterSetTimeInt);
     Swal.fire({
       icon: "error",
       title: "Game Over",
+      footer: '<a href="/">Play again!</a>',
+    });
+    memoryGame.style.pointerEvents = "none";
+  }
+  if (document.querySelectorAll(".match").length === boxs.length) {
+    document.getElementById("success").play();
+    clearInterval(counterSetTimeInt);
+    Swal.fire({
+      icon: "success",
+      title: "Winner",
       footer: '<a href="/">Play again!</a>',
     });
     memoryGame.style.pointerEvents = "none";

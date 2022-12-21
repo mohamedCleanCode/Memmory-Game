@@ -37,8 +37,14 @@ body {
 }
 .container .info {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 10px;
+}
+@media (max-width: 500px) {
+  .info {
+    text-align: center;
+  }
 }
 .container .info div {
   background-color: #f44336;
@@ -46,6 +52,11 @@ body {
   padding: 10px;
   border-radius: 6px;
   font-weight: bold;
+}
+@media (max-width: 500px) {
+  .info div {
+    margin-bottom: 10px;
+  }
 }
 .container .info span {
   color: #795548;
@@ -56,10 +67,13 @@ body {
 .memory-game {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between;
-  align-items: center; */
   width: 100%;
   margin: 20px auto;
+}
+@media (max-width: 500px) {
+  .info div {
+    margin-bottom: 10px;
+  }
 }
 .memory-game .box.active {
   transform: rotateY(180deg);
@@ -69,14 +83,26 @@ body {
   pointer-events: none;
 }
 .memory-game .box {
-  width: 100px;
-  height: 100px;
+  width: 114px;
+  height: 114px;
   transition: transform 0.5s;
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
   margin: 0 10px 20px;
 }
+@media (max-width: 767px) {
+  .memory-game .box {
+    width: 60px;
+    height: 60px;
+  }
+}
+/* @media (max-width: 1200px) {
+  .memory-game .box {
+    width: 60px;
+    height: 60px;
+  }
+} */
 .memory-game .front {
   background-color: #ffeb3b;
   line-height: 100px;
@@ -88,6 +114,12 @@ body {
   left: 50%;
   font-size: 70px;
   transform: translateX(-50%);
+}
+@media (max-width: 767px) {
+  .memory-game .front::before {
+    font-size: 40px;
+    line-height: 55px;
+  }
 }
 .memory-game .back {
   border: 3px solid red;
