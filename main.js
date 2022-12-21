@@ -10,7 +10,13 @@ document.querySelector(".start-game").addEventListener("click", (e) => {
   }
 });
 
+// Logic of order boxs
 let time = 5000;
 let memoryGame = document.querySelector(".memory-game");
 let boxs = memoryGame.querySelectorAll(".box");
 let range = [...boxs.keys()];
+let shuffledArray = range.sort((a, b) => 0.5 - Math.random());
+
+boxs.forEach((box, i) => {
+  box.style.order = shuffledArray[i];
+});
