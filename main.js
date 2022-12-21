@@ -9,3 +9,8 @@ document.querySelector(".start-game").addEventListener("click", (e) => {
     e.target.parentElement.remove();
   }
 });
+
+let time = 5000;
+let memoryGame = document.querySelector(".memory-game");
+let boxs = memoryGame.querySelectorAll(".box");
+let range = [...boxs.keys()];
